@@ -17,8 +17,8 @@ export class BookDetailsComponent implements OnInit {
     {
       console.log(param);
       this.bookId=param['id'];
-      this.authorId=param['authorid'];
-    });
+      //this.authorId=param['authorid'];
+    }); 
        
   }
 

@@ -3,21 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { AboutUsComponent } from './public-components/about-us/about-us.component';
 import { UserModule } from './user/user.module';
-import { PublicModule } from './public/public.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HomeComponent } from './public-components/home/home.component';
+import { BooksModule } from './books/books.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutUsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,    
-    PublicModule,
+    BooksModule,
     SharedModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
