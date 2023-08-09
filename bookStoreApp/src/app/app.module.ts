@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './public-components/home/home.component';
 import { BooksModule } from './books/books.module';
+import { CounterService } from './shared/services/counter.service';
+import { Counter2Service } from './shared/services/counter2.service';
+import { TestService } from './shared/services/test.service';
+import { factory } from './shared/services/counter.factory';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,12 @@ import { BooksModule } from './books/books.module';
     BrowserAnimationsModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [factory,
+     TestService,
+    // {provide:CounterService,useClass:Counter2Service},TestService,
+   {provide:'appTitle',useValue:{title:"BookStore App",description:"Book Store Description"}
+}],
+  // providers: [{provide:CounterService,useExisting:Counter2Service},Counter2Service], see user existing video
   bootstrap: [AppComponent]
 })
 export class AppModule { }

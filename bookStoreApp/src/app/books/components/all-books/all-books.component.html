@@ -1,3 +1,7 @@
+<button (click)="incClick()">Increase Counter</button>
+<button (click)="decClick()">Decrease Counter</button>
+
+<p>Counter= {{_counterService.count}}</p>
 <div class="container">
 <mat-card class="book-card" *ngFor="let book of books">
     <mat-card-header>
