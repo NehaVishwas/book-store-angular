@@ -1,0 +1,13 @@
+<p>authors works!</p>
+<!-- <p *ngIf="showauthors"> Data coming from parent {{data}}</p> -->
+<!-- <p>Data coming from parent  {{data}}</p> -->
+<!-- <p>Data coming from template reference variable {{datum}}</p> -->
+<!-- <button (click)="btnClick()">Pass data to Parent</button> -->
+<p>input data from parent {{data}}</p>
+<button (click)="incCounter()">Clicked me {{counter}} times.</button>
+<p>
+    Author data:<br>
+    id: {{authors.id}}<br>
+    name: {{authors.name}}
+</p>
+<ng-content></ng-content>

@@ -10,11 +10,33 @@ import { CounterService } from 'src/app/shared/services/counter.service';
 })
 export class AllBooksComponent implements OnInit{
   public books:BookModel[]=[];
+  private _pageTitle:string;
+  public set pageTitle(value:string)
+  {
+    this._pageTitle=value;
+  }
+  public get pageTitle()
+  {
+    return this._pageTitle;
+  }
 
   constructor(public bookService:BookService, public _counterService:CounterService){}
 
   ngOnInit(): void {
-    this.books=this.bookService.getBooks();
+    this.pageTitle="All Books"
+    const allbooks=this.bookService.getBooks();
+    allbooks.forEach(b=>
+      {
+        var obj=new BookModel();
+        obj.author=b.author;
+        obj.id=b.id;
+        obj.price=b.price;
+        obj.title=b.title;
+        obj.totalPages=b.totalPages;
+        obj.isPublished=b.isPublished==undefined?false:b.isPublished;
+        obj.datePublished=b.datePublished==undefined?new Date():b.datePublished;
+        this.books.push(obj);
+      })
     console.log(this.books);
   }
   incClick():void{

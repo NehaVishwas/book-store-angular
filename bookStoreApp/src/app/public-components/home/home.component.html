@@ -1,8 +1,24 @@
 <p>home works!</p>
-<button (click)="incClick()">Increase Counter</button>
-<button (click)="decClick()">Decrease Counter</button>
-
-<p>Counter= {{_counterService.count}}</p>
-
+<!-- <p #titled>home works!</p> -->
+<!-- <button #incbutton (click)="incClick()" mat-button>Increase Counter</button>
+<button (click)="decClick()">Decrease Counter</button> -->
+<!-- 
+<p>Counter= {{_counterService.count}}</p> -->
+<!-- 
 <p>{{title.title}}</p>
-<p>{{title.description}}</p>
+<p>{{title.description}}</p> -->
+<!-- <p>Data from child component {{testService.myData}}</p> -->
+<!-- <p>Authors</p> -->
+<!-- <button (click)="authors.setdata(_counterService.count)">Pass data by template reference variable</button> -->
+<!-- <app-authors #authors [data]="_counterService.count" [showauthors]="_counterService.count>4"></app-authors> -->
+<!-- <app-authors #authors></app-authors> -->
+<!-- <app-authors (myData)="childData($event)"></app-authors> -->
+<button (click)="counter()" #btnCounter>Increase Counter</button>
+<h1>{{count}}</h1>
+<app-authors [data]="count" [data2]="test" [authors]="obj">
+    <h1>I am the data from parent</h1>
+</app-authors>
+<hr>
+<app-authors [data]="count" [data2]="test" [authors]="obj">
+    <app-authors-address [address]="address"></app-authors-address>
+</app-authors>
