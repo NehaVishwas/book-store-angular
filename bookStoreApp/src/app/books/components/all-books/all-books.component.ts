@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookModel } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
 import { CounterService } from 'src/app/shared/services/counter.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-all-books',
@@ -23,20 +24,20 @@ export class AllBooksComponent implements OnInit{
   constructor(public bookService:BookService, public _counterService:CounterService){}
 
   ngOnInit(): void {
-    this.pageTitle="All Books"
-    const allbooks=this.bookService.getBooks();
-    allbooks.forEach(b=>
-      {
-        var obj=new BookModel();
-        obj.author=b.author;
-        obj.id=b.id;
-        obj.price=b.price;
-        obj.title=b.title;
-        obj.totalPages=b.totalPages;
-        obj.isPublished=b.isPublished==undefined?false:b.isPublished;
-        obj.datePublished=b.datePublished==undefined?new Date():b.datePublished;
-        this.books.push(obj);
-      })
+    this.pageTitle="All Books";
+    this.getAllBooks();
+    // allbooks.forEach(b=>
+    //   {
+    //     var obj=new BookModel();
+    //     obj.author=b.author;
+    //     obj.id=b.id;
+    //     obj.price=b.price;
+    //     obj.title=b.title;
+    //     obj.totalPages=b.totalPages;
+    //     obj.isPublished=b.isPublished==undefined?false:b.isPublished;
+    //     obj.datePublished=b.datePublished==undefined?new Date():b.datePublished;
+    //     this.books.push(obj);
+    //   })
     console.log(this.books);
   }
   incClick():void{
@@ -44,5 +45,11 @@ export class AllBooksComponent implements OnInit{
   }
   decClick():void{
     this._counterService.decCounter();
+  }
+  getAllBooks():void{
+    this.bookService.getBooks().subscribe(book=>{
+      this.books=book;
+      console.log(book);
+    });
   }
 }

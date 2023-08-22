@@ -9,7 +9,7 @@ import { HomeComponent } from './public-components/home/home.component';
 import { BooksComponent } from './books/books.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,pathMatch:'full'},
+  {path:'',component:HomeComponent,pathMatch:'full', title:'Welcome'},
   {path:'about',component:AboutUsComponent},
   {
     path:'auth',

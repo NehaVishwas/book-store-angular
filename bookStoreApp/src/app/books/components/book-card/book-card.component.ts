@@ -7,20 +7,8 @@ import { BookModel } from '../../models/book.model';
   styleUrls: ['./book-card.component.scss']
 })
 export class BookCardComponent implements OnInit {
-  @Input('allbooks')  
-  set books(value:BookModel[])
-  {
-    value.map(x=>x.title='Title: '+x.title);
-    this._books=value;
-  }
-  get books()
-  {
-    return this._books;
-  }
-  _books:BookModel[];
-ngOnInit(): void {
-  
-}
+  @Input('allbooks') books: BookModel[];
+  ngOnInit(): void {
 
-
+  }
 }

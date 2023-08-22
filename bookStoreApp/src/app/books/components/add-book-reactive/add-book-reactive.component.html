@@ -5,8 +5,8 @@
     <mat-radio-group class="toggle" aria-label="Select an option" formControlName="formatType">
         <mat-radio-button value="doc">Doc</mat-radio-button>
         <mat-radio-button value="pdf">Pdf</mat-radio-button>
-      </mat-radio-group>
-      
+    </mat-radio-group>
+
     <mat-form-field appearance="fill">
         <mat-label>Doc Format</mat-label>
         <input matInput placeholder="docFormat" name="docFormat" formControlName="docFormat">
@@ -25,11 +25,22 @@
         <mat-icon matSuffix>title</mat-icon>
         <mat-hint>{{titleErrorMsg}}</mat-hint>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Author</mat-label>
-        <input matInput name="author" placeholder="Author" formControlName="author">
-        <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field>
+    <div formArrayName="authors">
+        <div *ngFor="let auth of authors.controls; let i=index">
+        <mat-form-field appearance="fill" [formGroupName]="i">
+            <mat-label>Author</mat-label>
+            <input matInput name="author" placeholder="Authors fullName" formControlName="fullName">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill" [formGroupName]="i">
+            <mat-label>Address</mat-label>
+            <input matInput name="address" placeholder="Authors address" formControlName="address">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <button (click)="removeAuthors(i)" mat-raised-button>-</button>
+        </div>
+        <button (click)="addAuthors()" mat-raised-button>Add Authors</button>
+    </div>
     <mat-form-field appearance="fill">
         <mat-label>Pages</mat-label>
         <input matInput type="number" name="pages" placeholder="Pages" formControlName="totalPages">
@@ -38,7 +49,7 @@
     <div class="priceDiv" formGroupName="price">
         <mat-form-field appearance="fill">
             <mat-label>Price</mat-label>
-            <mat-select   formControlName="value">
+            <mat-select formControlName="value">
                 <mat-option *ngFor="let price of prices" [value]="price.value">
                     {{price.viewValue}}
                 </mat-option>
@@ -55,7 +66,7 @@
     </div>
     <mat-slide-toggle class="toggle" name="isPublished" formControlName="isPublished">
         is book Published
-        </mat-slide-toggle>
+    </mat-slide-toggle>
     <mat-form-field>
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" name="publishedon" formControlName="datePublished">

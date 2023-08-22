@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { BookService } from '../../services/book.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class AddBookReactiveComponent implements OnInit {
   public mybookForm: FormGroup;
 
   public titleErrorMsg: string;
-  constructor(public bookService: BookService) { }
+  constructor(public bookService: BookService,public formBuilder:FormBuilder) { }
   ngOnInit(): void {
     this.initForm();
     const titleControl = this.mybookForm.get('title');
@@ -34,22 +34,23 @@ export class AddBookReactiveComponent implements OnInit {
       this.formatTypeChanged(x));
   }
   initForm(): void {
-    this.mybookForm = new FormGroup({
-      title: new FormControl('title', [Validators.required, Validators.minLength(8)]),
+    this.mybookForm = this.formBuilder.group({
+      title:'',
       // title: new FormControl(),
-      author: new FormControl(),
-      totalPages: new FormControl,
-      isPublished: new FormControl,
-      price: new FormGroup(
+      //author:'',
+      totalPages:'',
+      isPublished:'',
+      price:this.formBuilder.group(
         {
-          currency: new FormControl,
-          value: new FormControl
+          currency: '',
+          value: ''
         }
       ),
-      datePublished: new FormControl,
-      formatType:new FormControl,
-      docFormat:new FormControl,
-      pdfFormat:new FormControl,
+      datePublished: '',
+      formatType:'',
+      docFormat:'',
+      pdfFormat:'',
+      authors:this.formBuilder.array([this.getAuthorControl()]),
     });
     //   this.mybookForm.setValue({
     //     title:'Book Title'
@@ -58,6 +59,22 @@ export class AddBookReactiveComponent implements OnInit {
     this.mybookForm.patchValue({
       title: 'Book Title'
       // No needyou have to initialize everything in set value
+    });
+  }
+  public get authors()
+  {
+    return <FormArray> this.mybookForm.get('authors');
+  }
+  public removeAuthors(index:number):void{
+    this.authors.removeAt(index);
+  }
+  public addAuthors():void{
+    this.authors.push(this.getAuthorControl());
+  }
+  private getAuthorControl():FormGroup{
+    return this.formBuilder.group({
+      fullName:'',
+      address:''
     });
   }
   updateFormValues(): void {
@@ -70,7 +87,9 @@ export class AddBookReactiveComponent implements OnInit {
   }
   saveBooks(): void {
     if (this.mybookForm.valid) {
-      this.bookService.addBook(this.mybookForm.value);
+      this.bookService.addBook(this.mybookForm.value).subscribe(x=>{
+        console.log(x);
+      });
     }
     else {
       alert("Form not valid");

@@ -2,12 +2,16 @@
     <mat-card class="book-card" *ngFor="let book of books">
         <mat-card-header>
           <div mat-card-avatar class="book-header-image"></div>
-          <mat-card-title>{{book.title}}</mat-card-title>
+          <mat-card-title>{{book.title | titlecase}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
           <p>
-            {{book.author}}
+            Authors:
+            <span *ngFor="let auth of book.authors">
+              {{auth.fullName}}
+              {{auth.address}}
+            </span>
           </p>
           <p>
             Total Pages: {{book.totalPages}}
@@ -16,10 +20,10 @@
             Price: {{book.price.value +' '+ book.price.currency}}
           </p>
           <p>
-            Is book published? : {{book.isPublished}}
+            Is book published? : {{book.isPublished | boolformat}}
           </p>
           <p>
-            Book published on : {{book.datePublished}}
+            Book published on : {{book.datePublished | date:'MM/dd/YY'}}
           </p>
         </mat-card-content>
         <mat-card-actions>

@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorsAddressComponent } from './components/authors-address/authors-address.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BoolformatPipe } from './pipes/boolformat.pipe';
 @NgModule({
   declarations: [
     NotFoundComponent,
@@ -15,10 +17,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     AuthorsComponent,
     AuthorsAddressComponent,
+    BoolformatPipe,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
@@ -26,11 +30,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports:[
     ToolbarComponent,
     FooterComponent,
+    HttpClientModule,
     MaterialModule,
     AuthorsComponent,
     AuthorsAddressComponent,
     ReactiveFormsModule,
     FormsModule,
+    BoolformatPipe,
   ]
 })
 export class SharedModule { }

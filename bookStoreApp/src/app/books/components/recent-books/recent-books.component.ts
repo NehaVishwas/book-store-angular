@@ -14,6 +14,6 @@ constructor(public _bookService:BookService)
   this.getRecentBooks();
 }
 public getRecentBooks():void{
-  this.recentBooks=this._bookService.recentBooks();
+  //this.recentBooks=this._bookService.recentBooks();
 }
 }
