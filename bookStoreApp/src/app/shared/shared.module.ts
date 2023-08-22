@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorsAddressComponent } from './components/authors-address/authors-address.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     NotFoundComponent,
@@ -19,6 +20,8 @@ import { AuthorsAddressComponent } from './components/authors-address/authors-ad
     CommonModule,
     RouterModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports:[
     ToolbarComponent,
@@ -26,6 +29,8 @@ import { AuthorsAddressComponent } from './components/authors-address/authors-ad
     MaterialModule,
     AuthorsComponent,
     AuthorsAddressComponent,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class SharedModule { }

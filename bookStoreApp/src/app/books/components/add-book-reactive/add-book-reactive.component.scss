@@ -1,0 +1,33 @@
+.addBookForm
+{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;    
+    //padding: 20px;    
+    background-color: adjust-hue($color: #6c757d, $degrees: 0);
+    
+}
+.toggle
+{
+    margin-bottom: 20px;
+}
+.saveButton
+{
+    width: 150px;
+}
+.selectclass
+{    
+    border-color: black;
+}
+.mat-mdc-form-field
+{
+    padding-bottom: -50px;
+}
+.mat-mdc-form-field-hint
+{
+    color: red;
+}
+.priceDiv{
+    flex-direction: row;
+    display: flex;
+}
